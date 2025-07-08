@@ -1,4 +1,4 @@
-name: Run PHPUnit or Pest on Push
+name: Test
 
 on: [push, pull_request]
 
