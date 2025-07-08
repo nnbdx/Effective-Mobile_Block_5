@@ -20,5 +20,8 @@ jobs:
       - name: Установка зависимостей
         run: composer install --no-progress --no-suggest
 
+      - name: Сделать phpunit исполняемым
+        run: chmod +x vendor/bin/phpunit
+
       - name: Запуск тестов
         run: vendor/bin/phpunit tests
