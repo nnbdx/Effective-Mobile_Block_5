@@ -1,0 +1,32 @@
+name: Run PHPUnit or Pest on Push
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: Установка PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, pdo, pdo_mysql
+          coverage: none
+
+      - name: Установка зависимостей
+        run: composer install --no-progress --no-suggest
+
+      - name: Сделать phpunit исполняемым
+        run: chmod +x vendor/bin/phpunit
+
+      - name: Запуск тестов
+        run: |
+          if [ -f vendor/bin/pest ]; then
+            vendor/bin/pest
+          else
+            vendor/bin/phpunit tests
+          fi
