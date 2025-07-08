@@ -1,4 +1,4 @@
-name: PHPUnit Tests
+name: Run PHPUnit or Pest on Push
 
 on: [push, pull_request]
 
@@ -24,4 +24,9 @@ jobs:
         run: chmod +x vendor/bin/phpunit
 
       - name: Запуск тестов
-        run: vendor/bin/phpunit tests
+        run: |
+          if [ -f vendor/bin/pest ]; then
+            vendor/bin/pest
+          else
+            vendor/bin/phpunit
+          fi
