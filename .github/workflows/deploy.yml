@@ -1,4 +1,4 @@
-name: Deploy to SSH Server
+name:  Deploy to SSH Server
 
 on:
   push:
@@ -24,4 +24,3 @@ jobs:
             git pull origin master
             composer install --no-dev
             php artisan migrate --force
-            sudo systemctl restart php-fpm
