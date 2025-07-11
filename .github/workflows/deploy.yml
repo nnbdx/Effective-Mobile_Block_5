@@ -46,12 +46,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Deploy via SSH
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SHH_USER }}@${{ secrets.SHH_HOST }} << 'EOF'
-          cd "/home/nnbdx99/Effective Mobile_Block5"
-          git pull origin master
-          composer install --no-dev
-          php artisan migrate --force
-          sudo systemctl restart php-fpm
-          EOF
+      - name: Деплой на сервер
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd '/home/nnbdx99/Effective Mobile_Block5'
+            git pull origin master
+            composer install --no-dev
+            php artisan migrate --force
+            sudo systemctl restart php-fpm
