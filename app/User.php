@@ -5,6 +5,7 @@ namespace App;
 class User
 {
     public string $firstName;
+
     public string $lastName;
 
     public function __construct(string $firstName, string $lastName)
