@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /var/www/project
+            cd '/home/nnbdx99/Effective Mobile_Block5'
             git pull origin master
             composer install --no-dev
             php artisan migrate --force
