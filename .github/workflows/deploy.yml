@@ -49,9 +49,9 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SHH_USER }}@${{ secrets.SHH_HOST }} << 'EOF'
-            cd '/home/nnbdx99/Effective Mobile_Block5'
-            git pull origin master
-            composer install --no-dev
-            php artisan migrate --force
-            sudo systemctl restart php-fpm
+          cd "/home/nnbdx99/Effective Mobile_Block5"
+          git pull origin master
+          composer install --no-dev
+          php artisan migrate --force
+          sudo systemctl restart php-fpm
           EOF
